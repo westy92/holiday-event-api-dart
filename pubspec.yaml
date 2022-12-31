@@ -1,0 +1,23 @@
+name: holiday_event_api
+description: The Official Holiday and Event API for Dart and Flutter
+version: 0.0.1
+repository: https://github.com/westy92/holiday-event-api-dart
+# documentation: https://github.com/westy92/holiday-event-api-dart
+issue_tracker: https://github.com/westy92/holiday-event-api-dart/issues
+funding:
+  - https://github.com/sponsors/westy92
+
+environment:
+  sdk: '>=2.18.0 <3.0.0' # TODO lower?
+
+platforms:
+  android:
+  ios:
+  linux:
+  macos:
+  web:
+  windows:
+
+dev_dependencies:
+  lints: ^2.0.0
+  test: ^1.16.0
