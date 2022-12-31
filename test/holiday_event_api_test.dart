@@ -6,9 +6,10 @@ void main() {
     test('blank API key', () {
       expect(
           () => HolidayEventApi(''),
-          throwsA(predicate((e) => e is ArgumentError && e.message ==
-          'Please provide a valid API key. Get one at https://apilayer.com/marketplace/checkiday-api#pricing.')
-      ));
+          throwsA(predicate((e) =>
+              e is ArgumentError &&
+              e.message ==
+                  'Please provide a valid API key. Get one at https://apilayer.com/marketplace/checkiday-api#pricing.')));
     });
 
     test('constructor success', () {
