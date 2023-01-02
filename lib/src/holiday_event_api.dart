@@ -30,10 +30,27 @@ class HolidayEventApi {
       params['timezone'] = timezone;
     }
 
+    return _request('events', params);
+  }
+
+  // TODO return type
+  Future<dynamic> search({required String query, bool adult = false}) async {
+    if (query.isEmpty) {
+      throw ArgumentError("Search query is required.");
+    }
+    var params = <String, String>{
+      'query': query,
+      'adult': adult.toString(),
+    };
+
+    return _request('search', params);
+  }
+
+  Future<dynamic> _request(String path, Map<String, String> params) async {
     final HttpClientRequest req = await client.getUrl(
       Uri.https(
         'api.apilayer.com',
-        '/checkiday/events', // TODO
+        '/checkiday/$path',
         params,
       ),
     );
