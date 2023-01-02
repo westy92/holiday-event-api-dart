@@ -15,7 +15,7 @@ void main() async {
 
     print(events);
 //    var event = events['events'][0];
-  //  print("Today is ${event.name}! Find more information at: ${event.url}.");
+    //  print("Today is ${event.name}! Find more information at: ${event.url}.");
     //print("Rate limit remaining: ${events.rateLimit.remainingMonth}/${events.rateLimit.limitMonth} (month).");
 /*
     // Get Event Information
