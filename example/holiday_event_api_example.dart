@@ -6,14 +6,14 @@ void main() async {
     final client = HolidayEventApi('<your API key>');
 
     // Get Events for a given Date
-    var events = await client.getEvents(
+    final events = await client.getEvents(
         // These parameters are the defaults but can be specified:
         // date: 'today',
         // timezone: 'America/Chicago',
         // adult: false,
         );
 
-    var event = events.events[0];
+    final event = events.events[0];
     print("Today is ${event.name}! Find more information at: ${event.url}.");
     print(
         "Rate limit remaining: ${events.rateLimit.remainingMonth}/${events.rateLimit.limitMonth} (month).");
@@ -26,17 +26,18 @@ void main() async {
         // end = 2030,
     )
 
-    println("The Event's hashtags are ${eventInfo.event.hashtags}.")
+    println("The Event's hashtags are ${eventInfo.event.hashtags}.")*/
 
     // Search for Events
-    val query = "zucchini"
-    val search = client.search(
-        query = query,
+    final query = 'zucchini';
+    final search = await client.search(
+      query: query,
         // These parameters are the defaults but can be specified:
-        // adult = false,
-    )
+      // adult: false,
+    );
 
-    println("Found ${search.events.size} events, including '${search.events[0].name}', that match the query '${query}'.")*/
+    print(
+        "Found ${search.events.length} events, including '${search.events[0].name}', that match the query '$query'.");
   } catch (e) {
     print(e);
   }

@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:holiday_event_api/src/model/get_events_response.dart';
+import 'package:holiday_event_api/src/model/search_response.dart';
 
 class HolidayEventApi {
   HolidayEventApi(String apiKey) {
@@ -18,7 +19,7 @@ class HolidayEventApi {
   static const JsonDecoder decoder = JsonDecoder();
   static final Uri baseUrl = Uri.parse("https://api.apilayer.com/checkiday");
 
-  // TODO docs
+  /// Gets the Events for the provided Date
   Future<GetEventsResponse> getEvents(
       {String? date, bool adult = false, String? timezone}) async {
     var params = <String, String>{
@@ -35,8 +36,8 @@ class HolidayEventApi {
     return _request('events', params, GetEventsResponse.fromJson);
   }
 
-  // TODO return type
-  Future<dynamic> search({required String query, bool adult = false}) async {
+  /// Searches for Events with the given criteria
+  Future<SearchResponse> search({required String query, bool adult = false}) async {
     if (query.isEmpty) {
       throw ArgumentError("Search query is required.");
     }
@@ -45,7 +46,7 @@ class HolidayEventApi {
       'adult': adult.toString(),
     };
 
-    return _request('search', params, GetEventsResponse.fromJson); // TODO
+    return _request('search', params, SearchResponse.fromJson);
   }
 
   Future<T> _request<T>(String path, Map<String, String> params,
