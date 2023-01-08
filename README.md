@@ -22,7 +22,9 @@ The recommended way to install the Holiday and Event API is through [Pub](https:
 ```bash
 flutter pub add holiday_event_api
 ```
+
 or
+
 ```bash
 dart pub add holiday_event_api
 ```

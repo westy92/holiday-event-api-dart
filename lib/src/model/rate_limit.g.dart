@@ -1,0 +1,12 @@
+// GENERATED CODE - DO NOT MODIFY BY HAND
+
+part of 'rate_limit.dart';
+
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+RateLimit _$RateLimitFromJson(Map<String, dynamic> json) => RateLimit(
+      limitMonth: json['limitMonth'] as int? ?? 0,
+      remainingMonth: json['remainingMonth'] as int? ?? 0,
+    );

@@ -1,6 +1,8 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:holiday_event_api/src/model/get_events_response.dart';
+
 class HolidayEventApi {
   HolidayEventApi(String apiKey) {
     if (apiKey.isEmpty) {
@@ -16,8 +18,8 @@ class HolidayEventApi {
   static const JsonDecoder decoder = JsonDecoder();
   static final Uri baseUrl = Uri.parse("https://api.apilayer.com/checkiday");
 
-  // TODO return type
-  Future<dynamic> getEvents(
+  // TODO docs
+  Future<GetEventsResponse> getEvents(
       {String? date, bool adult = false, String? timezone}) async {
     var params = <String, String>{
       'adult': adult.toString(),
@@ -30,7 +32,7 @@ class HolidayEventApi {
       params['timezone'] = timezone;
     }
 
-    return _request('events', params);
+    return _request('events', params, GetEventsResponse.fromJson);
   }
 
   // TODO return type
@@ -43,10 +45,11 @@ class HolidayEventApi {
       'adult': adult.toString(),
     };
 
-    return _request('search', params);
+    return _request('search', params, GetEventsResponse.fromJson); // TODO
   }
 
-  Future<dynamic> _request(String path, Map<String, String> params) async {
+  Future<T> _request<T>(String path, Map<String, String> params,
+      T Function(Map<String, dynamic>) fromJson) async {
     final HttpClientRequest req = await client.getUrl(
       Uri.https(
         'api.apilayer.com',
@@ -66,11 +69,12 @@ class HolidayEventApi {
     final Map<String, dynamic> result = decoder.convert(body);
 
     result['rateLimit'] = {
-      'limitMonth': int.tryParse(res.headers.value('X-RateLimit-Limit-Month') ?? '0'),
-      'remainingMonth': int.tryParse(res.headers.value('X-RateLimit-Remaining-Month') ?? '0'),
+      'limitMonth':
+          int.tryParse(res.headers.value('X-RateLimit-Limit-Month') ?? '0'),
+      'remainingMonth':
+          int.tryParse(res.headers.value('X-RateLimit-Remaining-Month') ?? '0'),
     };
 
-    //return GetEventsResult.fromJson(result);
-    return result;
+    return fromJson(result);
   }
 }
