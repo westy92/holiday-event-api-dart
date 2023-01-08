@@ -32,7 +32,7 @@ void main() async {
     final query = 'zucchini';
     final search = await client.search(
       query: query,
-        // These parameters are the defaults but can be specified:
+      // These parameters are the defaults but can be specified:
       // adult: false,
     );
 
