@@ -1,5 +1,6 @@
 import 'package:holiday_event_api/src/model/event_summary.dart';
 import 'package:holiday_event_api/src/model/rate_limit.dart';
+import 'package:holiday_event_api/src/model/standard_response.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 // Generated with: flutter packages pub run build_runner build
@@ -9,13 +10,13 @@ part 'search_response.g.dart';
 
 /// The Response returned by search
 @JsonSerializable(createToJson: false)
-class SearchResponse {
+class SearchResponse extends StandardResponse {
   const SearchResponse({
     this.query = 'unknown',
     this.adult = false,
     this.events = const [],
-    this.rateLimit = const RateLimit(),
-  });
+    RateLimit rateLimit = const RateLimit(),
+  }) : super(rateLimit);
 
   factory SearchResponse.fromJson(Map<String, dynamic> json) =>
       _$SearchResponseFromJson(json);
@@ -28,7 +29,4 @@ class SearchResponse {
 
   /// The found Events
   final List<EventSummary> events;
-
-  /// TODO inherit and docs
-  final RateLimit rateLimit;
 }

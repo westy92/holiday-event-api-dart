@@ -1,5 +1,6 @@
 import 'package:holiday_event_api/src/model/event_summary.dart';
 import 'package:holiday_event_api/src/model/rate_limit.dart';
+import 'package:holiday_event_api/src/model/standard_response.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 // Generated with: flutter packages pub run build_runner build
@@ -9,7 +10,7 @@ part 'get_events_response.g.dart';
 
 /// The Response returned by getEvents
 @JsonSerializable(createToJson: false)
-class GetEventsResponse {
+class GetEventsResponse extends StandardResponse {
   const GetEventsResponse({
     this.adult = false,
     this.date = 'unknown',
@@ -17,8 +18,8 @@ class GetEventsResponse {
     this.events = const [],
     this.multidayStarting = const [],
     this.multidayOngoing = const [],
-    this.rateLimit = const RateLimit(),
-  });
+    RateLimit rateLimit = const RateLimit(),
+  }) : super(rateLimit);
 
   factory GetEventsResponse.fromJson(Map<String, dynamic> json) =>
       _$GetEventsResponseFromJson(json);
@@ -42,7 +43,4 @@ class GetEventsResponse {
   /// Multi-day Events that are continuing their observance on Date
   @JsonKey(name: 'multiday_ongoing')
   final List<EventSummary> multidayOngoing;
-
-  /// TODO inherit and docs
-  final RateLimit rateLimit;
 }
