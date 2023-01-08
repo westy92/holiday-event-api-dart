@@ -37,7 +37,8 @@ class HolidayEventApi {
   }
 
   /// Searches for Events with the given criteria
-  Future<SearchResponse> search({required String query, bool adult = false}) async {
+  Future<SearchResponse> search(
+      {required String query, bool adult = false}) async {
     if (query.isEmpty) {
       throw ArgumentError("Search query is required.");
     }
