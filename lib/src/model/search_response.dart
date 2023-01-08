@@ -12,10 +12,10 @@ part 'search_response.g.dart';
 @JsonSerializable(createToJson: false)
 class SearchResponse extends StandardResponse {
   const SearchResponse({
-    this.query = 'unknown',
-    this.adult = false,
-    this.events = const [],
-    RateLimit rateLimit = const RateLimit(),
+    required this.query,
+    required this.adult,
+    required this.events,
+    required RateLimit rateLimit,
   }) : super(rateLimit);
 
   factory SearchResponse.fromJson(Map<String, dynamic> json) =>

@@ -12,13 +12,13 @@ part 'get_events_response.g.dart';
 @JsonSerializable(createToJson: false)
 class GetEventsResponse extends StandardResponse {
   const GetEventsResponse({
-    this.adult = false,
-    this.date = 'unknown',
-    this.timezone = 'unknown',
-    this.events = const [],
-    this.multidayStarting = const [],
-    this.multidayOngoing = const [],
-    RateLimit rateLimit = const RateLimit(),
+    required this.adult,
+    required this.date,
+    required this.timezone,
+    required this.events,
+    this.multidayStarting,
+    this.multidayOngoing,
+    required RateLimit rateLimit,
   }) : super(rateLimit);
 
   factory GetEventsResponse.fromJson(Map<String, dynamic> json) =>
@@ -38,9 +38,9 @@ class GetEventsResponse extends StandardResponse {
 
   /// Multi-day Events that start on Date
   @JsonKey(name: 'multiday_starting')
-  final List<EventSummary> multidayStarting;
+  final List<EventSummary>? multidayStarting;
 
   /// Multi-day Events that are continuing their observance on Date
   @JsonKey(name: 'multiday_ongoing')
-  final List<EventSummary> multidayOngoing;
+  final List<EventSummary>? multidayOngoing;
 }

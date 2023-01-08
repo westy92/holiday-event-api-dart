@@ -7,7 +7,7 @@ part of 'event_summary.dart';
 // **************************************************************************
 
 EventSummary _$EventSummaryFromJson(Map<String, dynamic> json) => EventSummary(
-      id: json['id'] as String? ?? 'unknown',
-      name: json['name'] as String? ?? 'unknown',
-      url: json['url'] as String? ?? 'unknown',
+      id: json['id'] as String,
+      name: json['name'] as String,
+      url: json['url'] as String,
     );

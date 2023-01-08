@@ -9,8 +9,8 @@ part 'rate_limit.g.dart';
 @JsonSerializable(createToJson: false)
 class RateLimit {
   const RateLimit({
-    this.limitMonth = 0,
-    this.remainingMonth = 0,
+    required this.limitMonth,
+    required this.remainingMonth,
   });
 
   factory RateLimit.fromJson(Map<String, dynamic> json) =>

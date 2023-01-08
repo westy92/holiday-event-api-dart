@@ -8,22 +8,17 @@ part of 'get_events_response.dart';
 
 GetEventsResponse _$GetEventsResponseFromJson(Map<String, dynamic> json) =>
     GetEventsResponse(
-      adult: json['adult'] as bool? ?? false,
-      date: json['date'] as String? ?? 'unknown',
-      timezone: json['timezone'] as String? ?? 'unknown',
-      events: (json['events'] as List<dynamic>?)
-              ?.map((e) => EventSummary.fromJson(e as Map<String, dynamic>))
-              .toList() ??
-          const [],
+      adult: json['adult'] as bool,
+      date: json['date'] as String,
+      timezone: json['timezone'] as String,
+      events: (json['events'] as List<dynamic>)
+          .map((e) => EventSummary.fromJson(e as Map<String, dynamic>))
+          .toList(),
       multidayStarting: (json['multiday_starting'] as List<dynamic>?)
-              ?.map((e) => EventSummary.fromJson(e as Map<String, dynamic>))
-              .toList() ??
-          const [],
+          ?.map((e) => EventSummary.fromJson(e as Map<String, dynamic>))
+          .toList(),
       multidayOngoing: (json['multiday_ongoing'] as List<dynamic>?)
-              ?.map((e) => EventSummary.fromJson(e as Map<String, dynamic>))
-              .toList() ??
-          const [],
-      rateLimit: json['rateLimit'] == null
-          ? const RateLimit()
-          : RateLimit.fromJson(json['rateLimit'] as Map<String, dynamic>),
+          ?.map((e) => EventSummary.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      rateLimit: RateLimit.fromJson(json['rateLimit'] as Map<String, dynamic>),
     );

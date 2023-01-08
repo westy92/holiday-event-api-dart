@@ -9,9 +9,9 @@ part 'event_summary.g.dart';
 @JsonSerializable(createToJson: false)
 class EventSummary {
   const EventSummary({
-    this.id = 'unknown',
-    this.name = 'unknown',
-    this.url = 'unknown',
+    required this.id,
+    required this.name,
+    required this.url,
   });
 
   factory EventSummary.fromJson(Map<String, dynamic> json) =>

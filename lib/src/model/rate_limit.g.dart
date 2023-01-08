@@ -7,6 +7,6 @@ part of 'rate_limit.dart';
 // **************************************************************************
 
 RateLimit _$RateLimitFromJson(Map<String, dynamic> json) => RateLimit(
-      limitMonth: json['limitMonth'] as int? ?? 0,
-      remainingMonth: json['remainingMonth'] as int? ?? 0,
+      limitMonth: json['limitMonth'] as int,
+      remainingMonth: json['remainingMonth'] as int,
     );
