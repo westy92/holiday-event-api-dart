@@ -17,16 +17,16 @@ void main() async {
     print("Today is ${event.name}! Find more information at: ${event.url}.");
     print(
         "Rate limit remaining: ${events.rateLimit.remainingMonth}/${events.rateLimit.limitMonth} (month).");
-/*
-    // Get Event Information
-    val eventInfo = client.getEventInfo(
-        id = event.id,
-        // These parameters can be specified to calculate the range of eventInfo.Event.Occurrences
-        // start = 2020,
-        // end = 2030,
-    )
 
-    println("The Event's hashtags are ${eventInfo.event.hashtags}.")*/
+    // Get Event Information
+    final eventInfo = await client.getEventInfo(
+      id: event.id,
+      // These parameters can be specified to calculate the range of eventInfo.event.occurrences
+      // start: 2020,
+      // end: 2030,
+    );
+
+    print("The Event's hashtags are ${eventInfo.event.hashtags}.");
 
     // Search for Events
     final query = 'zucchini';

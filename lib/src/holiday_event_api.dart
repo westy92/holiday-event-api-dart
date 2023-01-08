@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:holiday_event_api/src/model/get_event_info_response.dart';
 import 'package:holiday_event_api/src/model/get_events_response.dart';
 import 'package:holiday_event_api/src/model/search_response.dart';
 
@@ -34,6 +35,26 @@ class HolidayEventApi {
     }
 
     return _request('events', params, GetEventsResponse.fromJson);
+  }
+
+  /// Gets the Event Info for the provided Event
+  Future<GetEventInfoResponse> getEventInfo(
+      {required String id, int? start, int? end}) async {
+    if (id.isEmpty) {
+      throw ArgumentError('Event id is required.');
+    }
+    var params = <String, String>{
+      'id': id,
+    };
+
+    if (start != null) {
+      params['start'] = start.toString();
+    }
+    if (end != null) {
+      params['end'] = end.toString();
+    }
+
+    return _request('event', params, GetEventInfoResponse.fromJson);
   }
 
   /// Searches for Events with the given criteria
