@@ -63,8 +63,14 @@ class HolidayEventApi {
 
     final String body = await res.transform(utf8.decoder).join();
 
-    //return GetEventsResult.fromJson(
-    //    decoder.convert(body) as Map<String, dynamic>);
-    return decoder.convert(body);
+    final Map<String, dynamic> result = decoder.convert(body);
+
+    result['rateLimit'] = {
+      'limitMonth': int.tryParse(res.headers.value('X-RateLimit-Limit-Month') ?? '0'),
+      'remainingMonth': int.tryParse(res.headers.value('X-RateLimit-Remaining-Month') ?? '0'),
+    };
+
+    //return GetEventsResult.fromJson(result);
+    return result;
   }
 }
