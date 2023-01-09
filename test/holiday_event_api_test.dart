@@ -128,13 +128,12 @@ void main() {
       }, () => client);
     });
 
-    /* TODO
     test('follows redirects', () {
       final client = MockClient((request) async {
         if (request.url.path == '/checkiday/events') {
           return Response('', 302,
               headers: {
-                'Location': 'https://api.apilayer.com/checkiday/redirected'
+                'location': 'https://api.apilayer.com/checkiday/redirected',
               },
               isRedirect: true);
         }
@@ -144,7 +143,7 @@ void main() {
         final api = HolidayEventApi('abc123');
         await api.getEvents();
       }, () => client);
-    });*/
+    });
 
     test('reports rate limits', () {
       final client = MockClient((request) async {

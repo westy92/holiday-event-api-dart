@@ -18,6 +18,7 @@ class HolidayEventApi {
   late final String _apiKey;
 
   static const JsonDecoder decoder = JsonDecoder();
+  static const int _maxRedirects = 5;
 
   /// Gets the Events for the provided Date
   Future<GetEventsResponse> getEvents(
@@ -75,17 +76,25 @@ class HolidayEventApi {
     Response? response;
     Map<String, dynamic>? result;
     try {
+      final headers = {
+        'apikey': _apiKey,
+        'user-agent': 'HolidayApiDart/1.0.0', // TODO
+        'x-platform-version': Platform.version,
+      };
       response = await get(
-          Uri.https(
-            'api.apilayer.com',
-            '/checkiday/$path',
-            params,
-          ),
-          headers: {
-            'apikey': _apiKey,
-            'user-agent': 'HolidayApiDart/1.0.0', // TODO
-            'x-platform-version': Platform.version,
-          });
+        Uri.https(
+          'api.apilayer.com',
+          '/checkiday/$path',
+          params,
+        ),
+        headers: headers,
+      );
+
+      int redirects = 0;
+      while (response!.isRedirect && redirects++ < _maxRedirects) {
+        response = await get(Uri.parse(response.headers['location']!),
+            headers: headers);
+      }
 
       result = decoder.convert(response.body);
 
