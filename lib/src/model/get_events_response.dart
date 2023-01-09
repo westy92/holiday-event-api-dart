@@ -1,3 +1,4 @@
+import 'package:equatable/equatable.dart';
 import 'package:holiday_event_api/src/model/event_summary.dart';
 import 'package:holiday_event_api/src/model/rate_limit.dart';
 import 'package:holiday_event_api/src/model/standard_response.dart';
@@ -10,7 +11,7 @@ part 'get_events_response.g.dart';
 
 /// The Response returned by getEvents
 @JsonSerializable(createToJson: false)
-class GetEventsResponse extends StandardResponse {
+class GetEventsResponse extends StandardResponse with EquatableMixin {
   const GetEventsResponse({
     required this.adult,
     required this.date,
@@ -43,4 +44,8 @@ class GetEventsResponse extends StandardResponse {
   /// Multi-day Events that are continuing their observance on Date
   @JsonKey(name: 'multiday_ongoing')
   final List<EventSummary>? multidayOngoing;
+
+  @override
+  List<Object?> get props =>
+      [adult, date, timezone, events, multidayStarting, multidayOngoing];
 }

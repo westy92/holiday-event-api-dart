@@ -1,3 +1,4 @@
+import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 // Generated with: flutter packages pub run build_runner build
@@ -7,7 +8,7 @@ part 'pattern.g.dart';
 
 /// Information about an Event's Pattern
 @JsonSerializable(createToJson: false)
-class Pattern {
+class Pattern extends Equatable {
   const Pattern({
     this.firstYear,
     this.lastYear,
@@ -41,4 +42,8 @@ class Pattern {
 
   /// For how many days this event is celebrated
   final int length;
+
+  @override
+  List<Object?> get props =>
+      [firstYear, lastYear, observed, observedHtml, observedMarkdown, length];
 }

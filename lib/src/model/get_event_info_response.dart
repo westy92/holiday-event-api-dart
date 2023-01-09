@@ -1,3 +1,4 @@
+import 'package:equatable/equatable.dart';
 import 'package:holiday_event_api/src/model/event_info.dart';
 import 'package:holiday_event_api/src/model/rate_limit.dart';
 import 'package:holiday_event_api/src/model/standard_response.dart';
@@ -10,7 +11,7 @@ part 'get_event_info_response.g.dart';
 
 /// The Response returned by getEventInfo
 @JsonSerializable(createToJson: false)
-class GetEventInfoResponse extends StandardResponse {
+class GetEventInfoResponse extends StandardResponse with EquatableMixin {
   const GetEventInfoResponse({
     required this.event,
     required RateLimit rateLimit,
@@ -21,4 +22,7 @@ class GetEventInfoResponse extends StandardResponse {
 
   /// The Event Info
   final EventInfo event;
+
+  @override
+  List<Object?> get props => [event];
 }

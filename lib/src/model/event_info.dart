@@ -1,3 +1,4 @@
+import 'package:equatable/equatable.dart';
 import 'package:holiday_event_api/src/model/alternate_name.dart';
 import 'package:holiday_event_api/src/model/founder_info.dart';
 import 'package:holiday_event_api/src/model/image_info.dart';
@@ -13,7 +14,7 @@ part 'event_info.g.dart';
 
 /// Information about an Event
 @JsonSerializable(createToJson: false)
-class EventInfo {
+class EventInfo extends Equatable {
   const EventInfo({
     required this.id,
     required this.name,
@@ -73,4 +74,21 @@ class EventInfo {
 
   /// The Event Occurrences (when it occurs)
   final List<Occurrence>? occurrences;
+
+  @override
+  List<Object?> get props => [
+        id,
+        name,
+        url,
+        adult,
+        alternateNames,
+        hashtags,
+        image,
+        sources,
+        description,
+        howToObserve,
+        patterns,
+        founders,
+        occurrences
+      ];
 }

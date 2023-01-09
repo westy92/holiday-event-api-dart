@@ -19,6 +19,7 @@ platforms:
   windows:
 
 dependencies:
+  equatable: ^2.0.0
   http: ^0.13.5
   json_annotation: ^4.7.0
 

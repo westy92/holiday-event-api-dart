@@ -1,3 +1,4 @@
+import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 // Generated with: flutter packages pub run build_runner build
@@ -7,7 +8,7 @@ part 'image_info.g.dart';
 
 /// Information about an Event image
 @JsonSerializable(createToJson: false)
-class ImageInfo {
+class ImageInfo extends Equatable {
   const ImageInfo({
     required this.small,
     required this.medium,
@@ -25,4 +26,7 @@ class ImageInfo {
 
   /// A large image
   final String large;
+
+  @override
+  List<Object?> get props => [small, medium, large];
 }

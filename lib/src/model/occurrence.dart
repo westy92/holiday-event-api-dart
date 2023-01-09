@@ -1,3 +1,4 @@
+import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 // Generated with: flutter packages pub run build_runner build
@@ -7,7 +8,7 @@ part 'occurrence.g.dart';
 
 /// Information about an Event's Occurrence
 @JsonSerializable(createToJson: false)
-class Occurrence {
+class Occurrence extends Equatable {
   const Occurrence({
     required this.date,
     required this.length,
@@ -21,4 +22,7 @@ class Occurrence {
 
   /// The length (in days) of the Event occurrence
   final int length;
+
+  @override
+  List<Object?> get props => [date, length];
 }

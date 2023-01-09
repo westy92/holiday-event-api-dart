@@ -1,3 +1,4 @@
+import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 // Generated with: flutter packages pub run build_runner build
@@ -7,7 +8,7 @@ part 'alternate_name.g.dart';
 
 /// Information about an Event's Alternate Name
 @JsonSerializable(createToJson: false)
-class AlternateName {
+class AlternateName extends Equatable {
   const AlternateName({
     required this.name,
     this.firstYear,
@@ -27,4 +28,7 @@ class AlternateName {
   /// The last year this Alternate Name was in effect (null implies none or unknown)
   @JsonKey(name: 'last_year')
   final int? lastYear;
+
+  @override
+  List<Object?> get props => [name, firstYear, lastYear];
 }

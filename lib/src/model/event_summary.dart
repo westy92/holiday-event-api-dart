@@ -1,3 +1,4 @@
+import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 // Generated with: flutter packages pub run build_runner build
@@ -7,7 +8,7 @@ part 'event_summary.g.dart';
 
 /// A summary of an Event
 @JsonSerializable(createToJson: false)
-class EventSummary {
+class EventSummary extends Equatable {
   const EventSummary({
     required this.id,
     required this.name,
@@ -25,4 +26,7 @@ class EventSummary {
 
   // The Event URL
   final String url;
+
+  @override
+  List<Object?> get props => [id, name, url];
 }

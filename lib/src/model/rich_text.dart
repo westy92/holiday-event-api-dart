@@ -1,3 +1,4 @@
+import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 // Generated with: flutter packages pub run build_runner build
@@ -7,7 +8,7 @@ part 'rich_text.g.dart';
 
 /// Formatted Text
 @JsonSerializable(createToJson: false)
-class RichText {
+class RichText extends Equatable {
   const RichText({
     this.text,
     this.html,
@@ -25,4 +26,7 @@ class RichText {
 
   /// Formatted as Markdown
   final String? markdown;
+
+  @override
+  List<Object?> get props => [text, html, markdown];
 }
