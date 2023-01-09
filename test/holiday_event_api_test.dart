@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:holiday_event_api/holiday_event_api.dart';
 import 'package:holiday_event_api/src/model/event_summary.dart';
+import 'package:holiday_event_api/src/model/occurrence.dart';
 import 'package:http/http.dart';
 import 'package:http/testing.dart';
 import 'package:test/test.dart';
@@ -11,16 +12,23 @@ final getEventsDefault =
     File('test/responses/getEvents-default.json').readAsStringSync();
 final getEventsParameters =
     File('test/responses/getEvents-parameters.json').readAsStringSync();
+final getEventInfoDefault =
+    File('test/responses/getEventInfo.json').readAsStringSync();
+final getEventInfoParameters =
+    File('test/responses/getEventInfo-parameters.json').readAsStringSync();
 
 void main() {
   group('constructor tests', () {
     test('blank API key', () {
-      expect(
-          () => HolidayEventApi(''),
-          throwsA(predicate((e) =>
-              e is ArgumentError &&
-              e.message ==
-                  'Please provide a valid API key. Get one at https://apilayer.com/marketplace/checkiday-api#pricing.')));
+      expect(() => HolidayEventApi(''), throwsA(predicate((e) {
+        expect(e, isA<ArgumentError>());
+        e as ArgumentError;
+        expect(
+            e.message,
+            equals(
+                'Please provide a valid API key. Get one at https://apilayer.com/marketplace/checkiday-api#pricing.'));
+        return true;
+      })));
     });
 
     test('constructor success', () {
@@ -220,6 +228,91 @@ void main() {
                 url:
                     'https://www.checkiday.com/6ebb6fd5e483de2fde33969a6c398472/get-to-know-your-customers-day')));
       }, () => client);
+    });
+  });
+
+  group('getEventInfo', () {
+    test('fetches with default parameters', () {
+      final client = MockClient((request) async {
+        expect(request.url.path, equals('/checkiday/event'));
+        expect(
+            request.url.queryParameters,
+            equals({
+              'id': 'f90b893ea04939d7456f30c54f68d7b4',
+            }));
+
+        return Response(getEventInfoDefault, 200);
+      });
+      return runWithClient(() async {
+        final api = HolidayEventApi('abc123');
+        final result = await api.getEventInfo(
+          id: 'f90b893ea04939d7456f30c54f68d7b4',
+        );
+        expect(result.event.id, equals('f90b893ea04939d7456f30c54f68d7b4'));
+        expect(result.event.hashtags, hasLength(2));
+      }, () => client);
+    });
+
+    test('fetches with set parameters', () {
+      final client = MockClient((request) async {
+        expect(request.url.path, equals('/checkiday/event'));
+        expect(
+            request.url.queryParameters,
+            equals({
+              'id': 'f90b893ea04939d7456f30c54f68d7b4',
+              'start': '2002',
+              'end': '2003',
+            }));
+
+        return Response(getEventInfoParameters, 200);
+      });
+      return runWithClient(() async {
+        final api = HolidayEventApi('abc123');
+        final result = await api.getEventInfo(
+          id: 'f90b893ea04939d7456f30c54f68d7b4',
+          start: 2002,
+          end: 2003,
+        );
+        expect(result.event.occurrences, hasLength(2));
+        expect(result.event.occurrences![0],
+            equals(Occurrence(date: '08/08/2002', length: 1)));
+      }, () => client);
+    });
+
+    test('invalid event', () {
+      final client = MockClient((request) async {
+        expect(request.url.path, equals('/checkiday/event'));
+        expect(
+            request.url.queryParameters,
+            equals({
+              'id': 'hi',
+            }));
+
+        return Response(jsonEncode({'error': 'Event not found.'}), 404);
+      });
+      return runWithClient(() async {
+        expect(() async {
+          final api = HolidayEventApi('abc123');
+          await api.getEventInfo(id: 'hi');
+        }, throwsA(predicate((e) {
+          expect(e, isA<ClientException>());
+          e as ClientException;
+          expect(e.message, equals('Event not found.'));
+          return true;
+        })));
+      }, () => client);
+    });
+
+    test('missing id', () {
+      expect(() async {
+        final api = HolidayEventApi('abc123');
+        await api.getEventInfo(id: '');
+      }, throwsA(predicate((e) {
+        expect(e, isA<ArgumentError>());
+        e as ArgumentError;
+        expect(e.message, equals('Event id is required.'));
+        return true;
+      })));
     });
   });
 }
