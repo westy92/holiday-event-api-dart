@@ -1,0 +1,36 @@
+{
+    "timezone": "America/Chicago",
+    "date": "05/05/2025",
+    "adult": false,
+    "events": [
+        {
+            "id": "b80630ae75c35f34c0526173dd999cfc",
+            "name": "Cinco de Mayo",
+            "url": "https://www.checkiday.com/b80630ae75c35f34c0526173dd999cfc/cinco-de-mayo"
+        },
+        {
+            "id": "50bd02adb1a5fb297657a46a1b6b1082",
+            "name": "Great Lakes Awareness Day",
+            "url": "https://www.checkiday.com/50bd02adb1a5fb297657a46a1b6b1082/great-lakes-awareness-day"
+        }
+    ],
+    "multiday_starting": [
+        {
+            "id": "b9321bf3ce70e98fb385cb03d2f0cac4",
+            "name": "Teacher Appreciation Week",
+            "url": "https://www.checkiday.com/b9321bf3ce70e98fb385cb03d2f0cac4/teacher-appreciation-week"
+        }
+    ],
+    "multiday_ongoing": [
+        {
+            "id": "676cd91e31adcacd0a505117d2c4a842",
+            "name": "Be Kind to Animals Week",
+            "url": "https://www.checkiday.com/676cd91e31adcacd0a505117d2c4a842/be-kind-to-animals-week"
+        },
+        {
+            "id": "decc6d9d46ac1e40bf345d963fe2a7a2",
+            "name": "National Children's Mental Health Awareness Week",
+            "url": "https://www.checkiday.com/decc6d9d46ac1e40bf345d963fe2a7a2/national-childrens-mental-health-awareness-week"
+        }
+    ]
+}

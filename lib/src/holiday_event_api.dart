@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:holiday_event_api/src/model/get_event_info_response.dart';
 import 'package:holiday_event_api/src/model/get_events_response.dart';
 import 'package:holiday_event_api/src/model/search_response.dart';
+import 'package:http/http.dart';
 
 class HolidayEventApi {
   HolidayEventApi(String apiKey) {
@@ -16,9 +17,7 @@ class HolidayEventApi {
 
   late final String _apiKey;
 
-  static final HttpClient client = HttpClient();
   static const JsonDecoder decoder = JsonDecoder();
-  static final Uri baseUrl = Uri.parse("https://api.apilayer.com/checkiday");
 
   /// Gets the Events for the provided Date
   Future<GetEventsResponse> getEvents(
@@ -73,31 +72,38 @@ class HolidayEventApi {
 
   Future<T> _request<T>(String path, Map<String, String> params,
       T Function(Map<String, dynamic>) fromJson) async {
-    final HttpClientRequest req = await client.getUrl(
-      Uri.https(
-        'api.apilayer.com',
-        '/checkiday/$path',
-        params,
-      ),
-    );
+    Response? response;
+    Map<String, dynamic>? result;
+    try {
+      response = await get(
+          Uri.https(
+            'api.apilayer.com',
+            '/checkiday/$path',
+            params,
+          ),
+          headers: {
+            'apikey': _apiKey,
+            'user-agent': 'HolidayApiDart/1.0.0', // TODO
+            'x-platform-version': Platform.version,
+          });
 
-    req.headers.add('apikey', _apiKey);
-    req.headers.add('user-agent', 'HolidayApiDart/1.0.0'); // TODO
-    req.headers.add('x-platform-version', Platform.version);
+      result = decoder.convert(response.body);
 
-    final HttpClientResponse res = await req.close();
+      result!['rateLimit'] = {
+        'limitMonth':
+            int.tryParse(response.headers['x-ratelimit-limit-month'] ?? '0'),
+        'remainingMonth': int.tryParse(
+            response.headers['x-ratelimit-remaining-month'] ?? '0'),
+      };
 
-    final String body = await res.transform(utf8.decoder).join();
-
-    final Map<String, dynamic> result = decoder.convert(body);
-
-    result['rateLimit'] = {
-      'limitMonth':
-          int.tryParse(res.headers.value('X-RateLimit-Limit-Month') ?? '0'),
-      'remainingMonth':
-          int.tryParse(res.headers.value('X-RateLimit-Remaining-Month') ?? '0'),
-    };
-
-    return fromJson(result);
+      return fromJson(result);
+    } catch (err) {
+      if (response?.statusCode == HttpStatus.ok) {
+        throw FormatException('Unable to parse response.');
+      }
+      // TODO exception type
+      throw ClientException(
+          result?['error'] ?? response?.reasonPhrase ?? response?.statusCode);
+    }
   }
 }

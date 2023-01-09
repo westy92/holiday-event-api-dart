@@ -1,0 +1,21 @@
+{
+    "query": "zucchini",
+    "adult": false,
+    "events": [
+        {
+            "id": "cc81cbd8730098456f85f69798cbc867",
+            "name": "National Zucchini Bread Day",
+            "url": "https://www.checkiday.com/cc81cbd8730098456f85f69798cbc867/national-zucchini-bread-day"
+        },
+        {
+            "id": "778e08321fc0ca4ec38fbf507c0e6c26",
+            "name": "National Zucchini Day",
+            "url": "https://www.checkiday.com/778e08321fc0ca4ec38fbf507c0e6c26/national-zucchini-day"
+        },
+        {
+            "id": "61363236f06e4eb8e4e14e5925c2503d",
+            "name": "Sneak Some Zucchini Onto Your Neighbor's Porch Day",
+            "url": "https://www.checkiday.com/61363236f06e4eb8e4e14e5925c2503d/sneak-some-zucchini-onto-your-neighbors-porch-day"
+        }
+    ]
+}

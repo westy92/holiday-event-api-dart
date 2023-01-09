@@ -1,0 +1,65 @@
+{
+    "event": {
+        "id": "f90b893ea04939d7456f30c54f68d7b4",
+        "name": "International Cat Day",
+        "alternate_names": [
+            {
+                "name": "TEST",
+                "first_year": 2005,
+                "last_year": null
+            }
+        ],
+        "adult": false,
+        "url": "https://www.checkiday.com/f90b893ea04939d7456f30c54f68d7b4/international-cat-day",
+        "hashtags": [
+            "InternationalCatDay",
+            "CatDay"
+        ],
+        "image": {
+            "small": "https://static.checkiday.com/img/300/kittens-555822.jpg",
+            "medium": "https://static.checkiday.com/img/600/kittens-555822.jpg",
+            "large": "https://static.checkiday.com/img/1200/kittens-555822.jpg"
+        },
+        "sources": [
+            "https://www.ibtimes.com/international-cat-day-2014-cat-lovers-worldwide-celebrate-feline-obsession-1653614",
+            "https://www.ifaw.org/united-states/news/ifaw-marks-international-cat-day"
+        ],
+        "founders": [
+            {
+                "name": "International Fund For Animal Welfare",
+                "url": "https://www.ifaw.org/",
+                "date": "2002"
+            }
+        ],
+        "description": {
+            "text": "International Cat Day celebrates love for cats, and also focuses on the importance of keeping them safe, as well as on protecting more vulnerable wildlife that they come into contact with. The day was created by the International Fund for Animal Welfare.",
+            "html": "<p>International Cat Day celebrates love for cats, and also focuses on the importance of keeping them safe, as well as on protecting more vulnerable wildlife that they come into contact with. The day was created by the International Fund for Animal Welfare.</p>",
+            "markdown": "International Cat Day celebrates love for cats, and also focuses on the importance of keeping them safe, as well as on protecting more vulnerable wildlife that they come into contact with. The day was created by the International Fund for Animal Welfare."
+        },
+        "how_to_observe": {
+            "text": "Spend the day playing with your cat and making sure they have all the things they need to be safe. Sterilization, vaccination, and veterinary care are important for them. Sterilization ensures there will be less unwanted cats on the streets, and with proper veterinary care, cats will stay healthy, and less disease will be spread. Make sure your cat has a collar with identification. Buying big and colorful collars for your cat may help protect birds, and letting them get fresh air in catios instead of roaming outside may also help.\nIf there is great danger to your cat outside, or if your cat will be a great danger to other animals outside, it may be a good idea to always keep them inside. In this ,case they must have plenty of things to keep them happy, such as cat trees to climb, posts to scratch, and toys to play with. You could also share photos of your cat or of you and your cat on social media. If you don't have a cat, you could volunteer at a cat shelter, visit a cat cafe, or even adopt a cat. Some shelters have courses for cat care and cat health on the day. You could also donate to the International Fund for Animal Welfare, or support another cat charity.",
+            "html": "<p>Spend the day playing with your cat and making sure they have all the things they need to be safe. Sterilization, vaccination, and veterinary care are important for them. Sterilization ensures there will be less unwanted cats on the streets, and with proper veterinary care, cats will stay healthy, and less disease will be spread. Make sure your cat has a collar with identification. Buying big and colorful <a href=\"https://www.amazon.com/s?url=search-alias=aps&amp;field-keywords=birdbesafe+cat+collar&amp;sprefix=birdbesafe,aps,169&amp;crid=3685VO6WFTRUL&amp;tag=checkiday08-20\">collars</a> for your cat may help protect birds, and letting them get fresh air in <a href=\"https://www.amazon.com/s/?ref=nb_sb_noss_1?url=search-alias=aps&amp;field-keywords=catios&amp;rh=i:aps,k:catios&amp;tag=checkiday08-20\">catios</a> instead of roaming outside may also help.</p>\n<p>If there is great danger to your cat outside, or if your cat will be a great danger to other animals outside, it may be a good idea to always keep them inside. In this ,case they must have plenty of things to keep them happy, such as cat trees to climb, posts to scratch, and toys to play with. You could also share photos of your cat or of you and your cat on social media. If you don't have a cat, you could volunteer at a cat shelter, visit a cat cafe, or even adopt a cat. Some shelters have courses for cat care and cat health on the day. You could also <a href=\"https://secure.ifaw.org/united-states/secure/help-us-save-animals-and-places-they-call-home\">donate</a> to the International Fund for Animal Welfare, or support another cat charity.</p>",
+            "markdown": "Spend the day playing with your cat and making sure they have all the things they need to be safe. Sterilization, vaccination, and veterinary care are important for them. Sterilization ensures there will be less unwanted cats on the streets, and with proper veterinary care, cats will stay healthy, and less disease will be spread. Make sure your cat has a collar with identification. Buying big and colorful [collars](https://www.amazon.com/s?url=search-alias=aps&field-keywords=birdbesafe+cat+collar&sprefix=birdbesafe,aps,169&crid=3685VO6WFTRUL&tag=checkiday08-20) for your cat may help protect birds, and letting them get fresh air in [catios](https://www.amazon.com/s/?ref=nb_sb_noss_1?url=search-alias=aps&field-keywords=catios&rh=i:aps,k:catios&tag=checkiday08-20) instead of roaming outside may also help.\r\n\r\nIf there is great danger to your cat outside, or if your cat will be a great danger to other animals outside, it may be a good idea to always keep them inside. In this ,case they must have plenty of things to keep them happy, such as cat trees to climb, posts to scratch, and toys to play with. You could also share photos of your cat or of you and your cat on social media. If you don't have a cat, you could volunteer at a cat shelter, visit a cat cafe, or even adopt a cat. Some shelters have courses for cat care and cat health on the day. You could also [donate](https://secure.ifaw.org/united-states/secure/help-us-save-animals-and-places-they-call-home) to the International Fund for Animal Welfare, or support another cat charity."
+        },
+        "patterns": [
+            {
+                "first_year": 2002,
+                "last_year": null,
+                "observed": "annually on August 8th",
+                "observed_html": "annually on <a href=\"https://www.checkiday.com/8/8\">August 8th</a>",
+                "observed_markdown": "annually on [August 8th](https://www.checkiday.com/8/8)",
+                "length": 1
+            }
+        ],
+        "occurrences": [
+            {
+                "date": "08/08/2002",
+                "length": 1
+            },
+            {
+                "date": "08/08/2003",
+                "length": 1
+            }
+        ]
+    }
+}

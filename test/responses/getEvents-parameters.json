@@ -1,0 +1,25 @@
+{
+    "timezone": "America/New_York",
+    "date": "07/16/1992",
+    "adult": true,
+    "events": [
+        {
+            "id": "6ebb6fd5e483de2fde33969a6c398472",
+            "name": "Get to Know Your Customers Day",
+            "url": "https://www.checkiday.com/6ebb6fd5e483de2fde33969a6c398472/get-to-know-your-customers-day"
+        },
+        {
+            "id": "b99556564fabc2f39e1b97c9a40e1e15",
+            "name": "National Atomic Veterans Day",
+            "url": "https://www.checkiday.com/b99556564fabc2f39e1b97c9a40e1e15/national-atomic-veterans-day"
+        }
+    ],
+    "multiday_starting": [],
+    "multiday_ongoing": [
+        {
+            "id": "9c64b0803f77735dc76c0cc0b6a1ccf0",
+            "name": "Hitchhiking Month",
+            "url": "https://www.checkiday.com/9c64b0803f77735dc76c0cc0b6a1ccf0/hitchhiking-month"
+        }
+    ]
+}
