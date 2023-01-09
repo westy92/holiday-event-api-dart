@@ -16,6 +16,10 @@ final getEventInfoDefault =
     File('test/responses/getEventInfo.json').readAsStringSync();
 final getEventInfoParameters =
     File('test/responses/getEventInfo-parameters.json').readAsStringSync();
+final searchDefault =
+    File('test/responses/search-default.json').readAsStringSync();
+final searchParameters =
+    File('test/responses/search-parameters.json').readAsStringSync();
 
 void main() {
   group('constructor tests', () {
@@ -311,6 +315,137 @@ void main() {
         expect(e, isA<ArgumentError>());
         e as ArgumentError;
         expect(e.message, equals('Event id is required.'));
+        return true;
+      })));
+    });
+  });
+
+  group('search', () {
+    test('fetches with default parameters', () {
+      final client = MockClient((request) async {
+        expect(request.url.path, equals('/checkiday/search'));
+        expect(
+            request.url.queryParameters,
+            equals({
+              'query': 'zucchini',
+              'adult': 'false',
+            }));
+
+        return Response(searchDefault, 200);
+      });
+      return runWithClient(() async {
+        final api = HolidayEventApi('abc123');
+        final result = await api.search(
+          query: 'zucchini',
+        );
+        expect(result.adult, equals(false));
+        expect(result.query, equals('zucchini'));
+        expect(result.events, hasLength(3));
+        expect(
+            result.events[0],
+            equals(EventSummary(
+                id: 'cc81cbd8730098456f85f69798cbc867',
+                name: 'National Zucchini Bread Day',
+                url:
+                    'https://www.checkiday.com/cc81cbd8730098456f85f69798cbc867/national-zucchini-bread-day')));
+      }, () => client);
+    });
+
+    test('fetches with set parameters', () {
+      final client = MockClient((request) async {
+        expect(request.url.path, equals('/checkiday/search'));
+        expect(
+            request.url.queryParameters,
+            equals({
+              'query': 'porch day',
+              'adult': 'true',
+            }));
+
+        return Response(searchParameters, 200);
+      });
+      return runWithClient(() async {
+        final api = HolidayEventApi('abc123');
+        final result = await api.search(
+          query: 'porch day',
+          adult: true,
+        );
+        expect(result.adult, equals(true));
+        expect(result.query, equals('porch day'));
+        expect(result.events, hasLength(1));
+        expect(
+            result.events[0],
+            equals(EventSummary(
+                id: '61363236f06e4eb8e4e14e5925c2503d',
+                name: "Sneak Some Zucchini Onto Your Neighbor's Porch Day",
+                url:
+                    'https://www.checkiday.com/61363236f06e4eb8e4e14e5925c2503d/sneak-some-zucchini-onto-your-neighbors-porch-day')));
+      }, () => client);
+    });
+
+    test('query too short', () {
+      final client = MockClient((request) async {
+        expect(request.url.path, equals('/checkiday/search'));
+        expect(
+            request.url.queryParameters,
+            equals({
+              'query': 'a',
+              'adult': 'false',
+            }));
+
+        return Response(
+            jsonEncode({'error': 'Please enter a longer search term.'}), 400);
+      });
+      return runWithClient(() async {
+        expect(() async {
+          final api = HolidayEventApi('abc123');
+          await api.search(query: 'a');
+        }, throwsA(predicate((e) {
+          expect(e, isA<ClientException>());
+          e as ClientException;
+          expect(e.message, equals('Please enter a longer search term.'));
+          return true;
+        })));
+      }, () => client);
+    });
+
+    test('too many results', () {
+      final client = MockClient((request) async {
+        expect(request.url.path, equals('/checkiday/search'));
+        expect(
+            request.url.queryParameters,
+            equals({
+              'query': 'day',
+              'adult': 'false',
+            }));
+
+        return Response(
+            jsonEncode({
+              'error': 'Too many results returned. Please refine your query.'
+            }),
+            400);
+      });
+      return runWithClient(() async {
+        expect(() async {
+          final api = HolidayEventApi('abc123');
+          await api.search(query: 'day');
+        }, throwsA(predicate((e) {
+          expect(e, isA<ClientException>());
+          e as ClientException;
+          expect(e.message,
+              equals('Too many results returned. Please refine your query.'));
+          return true;
+        })));
+      }, () => client);
+    });
+
+    test('query empty', () {
+      expect(() async {
+        final api = HolidayEventApi('abc123');
+        await api.search(query: '');
+      }, throwsA(predicate((e) {
+        expect(e, isA<ArgumentError>());
+        e as ArgumentError;
+        expect(e.message, equals('Search query is required.'));
         return true;
       })));
     });
