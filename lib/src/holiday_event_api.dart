@@ -102,8 +102,9 @@ class HolidayEventApi {
         throw FormatException('Unable to parse response.');
       }
       // TODO exception type
-      throw ClientException(
-          result?['error'] ?? response?.reasonPhrase ?? response?.statusCode);
+      throw ClientException(result?['error'] ??
+          response?.reasonPhrase ??
+          response?.statusCode.toString());
     }
   }
 }
