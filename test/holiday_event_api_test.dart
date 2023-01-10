@@ -2,8 +2,18 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:holiday_event_api/holiday_event_api.dart';
+import 'package:holiday_event_api/src/model/alternate_name.dart';
+import 'package:holiday_event_api/src/model/event_info.dart';
 import 'package:holiday_event_api/src/model/event_summary.dart';
+import 'package:holiday_event_api/src/model/founder_info.dart';
+import 'package:holiday_event_api/src/model/get_event_info_response.dart';
+import 'package:holiday_event_api/src/model/get_events_response.dart';
+import 'package:holiday_event_api/src/model/image_info.dart';
 import 'package:holiday_event_api/src/model/occurrence.dart';
+import 'package:holiday_event_api/src/model/pattern.dart';
+import 'package:holiday_event_api/src/model/rate_limit.dart';
+import 'package:holiday_event_api/src/model/rich_text.dart';
+import 'package:holiday_event_api/src/model/search_response.dart';
 import 'package:http/http.dart';
 import 'package:http/testing.dart';
 import 'package:test/test.dart';
@@ -448,6 +458,173 @@ void main() {
         expect(e.message, equals('Search query is required.'));
         return true;
       })));
+    });
+  });
+
+  group('model tests', () {
+    test('AlternateName', () {
+      final a = AlternateName(name: 'a', firstYear: 123, lastYear: 456);
+      final a2 = AlternateName(name: 'a', firstYear: 123, lastYear: 456);
+      final b = AlternateName(name: 'b', firstYear: 123, lastYear: 456);
+      expect(a, equals(a));
+      expect(a, equals(a2));
+      expect(a, isNot(equals(b)));
+    });
+
+    test('EventInfo', () {
+      final a = EventInfo(
+          id: 'a', name: 'b', url: 'c', adult: false, alternateNames: []);
+      final a2 = EventInfo(
+          id: 'a', name: 'b', url: 'c', adult: false, alternateNames: []);
+      final b = EventInfo(
+          id: 'A', name: 'b', url: 'c', adult: false, alternateNames: []);
+      expect(a, equals(a));
+      expect(a, equals(a2));
+      expect(a, isNot(equals(b)));
+    });
+
+    test('EventSummary', () {
+      final a = EventSummary(name: 'a', id: '123', url: '456');
+      final a2 = EventSummary(name: 'a', id: '123', url: '456');
+      final b = EventSummary(name: 'b', id: '123', url: '456');
+      expect(a, equals(a));
+      expect(a, equals(a2));
+      expect(a, isNot(equals(b)));
+    });
+
+    test('FounderInfo', () {
+      final a = FounderInfo(name: 'a', url: '123', date: '456');
+      final a2 = FounderInfo(name: 'a', url: '123', date: '456');
+      final b = FounderInfo(name: 'b', url: '123', date: '456');
+      expect(a, equals(a));
+      expect(a, equals(a2));
+      expect(a, isNot(equals(b)));
+    });
+
+    test('GetEventInfoResponse', () {
+      final a = GetEventInfoResponse(
+          event: EventInfo(
+              id: 'a', name: 'b', url: 'c', adult: false, alternateNames: []),
+          rateLimit: RateLimit(limitMonth: 123, remainingMonth: 456));
+      final a2 = GetEventInfoResponse(
+          event: EventInfo(
+              id: 'a', name: 'b', url: 'c', adult: false, alternateNames: []),
+          rateLimit: RateLimit(limitMonth: 123, remainingMonth: 456));
+      final b = GetEventInfoResponse(
+          event: EventInfo(
+              id: 'A', name: 'B', url: 'C', adult: false, alternateNames: []),
+          rateLimit: RateLimit(limitMonth: 123, remainingMonth: 456));
+      expect(a, equals(a));
+      expect(a, equals(a2));
+      expect(a, isNot(equals(b)));
+    });
+
+    test('GetEventsResponse', () {
+      final a = GetEventsResponse(
+          adult: true,
+          date: 'd',
+          timezone: 't',
+          events: [],
+          rateLimit: RateLimit(limitMonth: 123, remainingMonth: 456));
+      final a2 = GetEventsResponse(
+          adult: true,
+          date: 'd',
+          timezone: 't',
+          events: [],
+          rateLimit: RateLimit(limitMonth: 123, remainingMonth: 456));
+      final b = GetEventsResponse(
+          adult: false,
+          date: 'd',
+          timezone: 't',
+          events: [],
+          rateLimit: RateLimit(limitMonth: 123, remainingMonth: 456));
+      expect(a, equals(a));
+      expect(a, equals(a2));
+      expect(a, isNot(equals(b)));
+    });
+
+    test('ImageInfo', () {
+      final a = ImageInfo(small: 'a', medium: '123', large: '456');
+      final a2 = ImageInfo(small: 'a', medium: '123', large: '456');
+      final b = ImageInfo(small: 'b', medium: '123', large: '456');
+      expect(a, equals(a));
+      expect(a, equals(a2));
+      expect(a, isNot(equals(b)));
+    });
+
+    test('Occurrence', () {
+      final a = Occurrence(date: 'a', length: 123);
+      final a2 = Occurrence(date: 'a', length: 123);
+      final b = Occurrence(date: 'b', length: 123);
+      expect(a, equals(a));
+      expect(a, equals(a2));
+      expect(a, isNot(equals(b)));
+    });
+
+    test('Pattern', () {
+      final a = Pattern(
+          firstYear: 123,
+          lastYear: 456,
+          observed: 'txt',
+          observedHtml: 'html',
+          observedMarkdown: 'md',
+          length: 789);
+      final a2 = Pattern(
+          firstYear: 123,
+          lastYear: 456,
+          observed: 'txt',
+          observedHtml: 'html',
+          observedMarkdown: 'md',
+          length: 789);
+      final b = Pattern(
+          firstYear: 999,
+          lastYear: 456,
+          observed: 'txt',
+          observedHtml: 'html',
+          observedMarkdown: 'md',
+          length: 789);
+      expect(a, equals(a));
+      expect(a, equals(a2));
+      expect(a, isNot(equals(b)));
+    });
+
+    test('RateLimit', () {
+      final a = RateLimit(limitMonth: 123, remainingMonth: 456);
+      final a2 = RateLimit(limitMonth: 123, remainingMonth: 456);
+      final b = RateLimit(limitMonth: 999, remainingMonth: 456);
+      expect(a, equals(a));
+      expect(a, equals(a2));
+      expect(a, isNot(equals(b)));
+    });
+
+    test('RichText', () {
+      final a = RichText(text: 'txt', markdown: 'md', html: 'html');
+      final a2 = RichText(text: 'txt', markdown: 'md', html: 'html');
+      final b = RichText(text: 'TXT', markdown: 'md', html: 'html');
+      expect(a, equals(a));
+      expect(a, equals(a2));
+      expect(a, isNot(equals(b)));
+    });
+
+    test('SearchResponse', () {
+      final a = SearchResponse(
+          adult: false,
+          query: 'q',
+          events: [],
+          rateLimit: RateLimit(limitMonth: 123, remainingMonth: 456));
+      final a2 = SearchResponse(
+          adult: false,
+          query: 'q',
+          events: [],
+          rateLimit: RateLimit(limitMonth: 123, remainingMonth: 456));
+      final b = SearchResponse(
+          adult: false,
+          query: 'QUERY2',
+          events: [],
+          rateLimit: RateLimit(limitMonth: 123, remainingMonth: 456));
+      expect(a, equals(a));
+      expect(a, equals(a2));
+      expect(a, isNot(equals(b)));
     });
   });
 }
