@@ -41,7 +41,7 @@ jobs:
         dart pub global run pana --exit-code-threshold 0 --no-warning .
 
     - name: Validate example
-      run: dart compile exe example/holiday_event_api_example.dart
+      run: dart analyze example/holiday_event_api_example.dart
 
     - name: Upload code coverage
       if: ${{ matrix.sdk == 'stable' && matrix.os == 'ubuntu-latest' }}
