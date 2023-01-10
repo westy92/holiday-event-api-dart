@@ -10,7 +10,7 @@ Industry-leading Holiday and Event API for Dart and Flutter. Over 5,000 holidays
 
 ## Supported Dart and Flutter Versions
 
-The latest version of the the Holiday and Event API is compatible with the [latest version of Dart](https://dart.dev/) but may work with older verions.
+The latest version of the the Holiday and Event API is compatible with the [latest version of Dart](https://dart.dev/) but should work with 2.15.0 and later.
 
 ## Authentication
 

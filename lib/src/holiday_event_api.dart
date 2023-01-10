@@ -17,11 +17,19 @@ class HolidayEventApi {
 
   late final String _apiKey;
 
-  static const String version = '0.0.1';
+  static const String version = '1.0.0';
   static const JsonDecoder _decoder = JsonDecoder();
   static const int _maxRedirects = 5;
 
-  /// Gets the Events for the provided Date
+  /// Gets the Events for the provided [date].
+  ///
+  /// You can optionally specify a [date] (defaults to today), whether you wish to include
+  /// NSFW Events with [adult], and the [timezone] context for the given [date] (defaults
+  /// to America/Chicago).
+  ///
+  /// ```dart
+  /// getEvents(date: 'today', adult: false, timezone: 'America/Chicago')
+  /// ```
   Future<GetEventsResponse> getEvents(
       {String? date, bool adult = false, String? timezone}) async {
     var params = <String, String>{
@@ -38,7 +46,14 @@ class HolidayEventApi {
     return _request('events', params, GetEventsResponse.fromJson);
   }
 
-  /// Gets the Event Info for the provided Event
+  /// Gets the Event Info for the provided Event [id].
+  ///
+  /// You can optionally sepcify the [start] and [end] year(s)
+  /// to configure the range of the returned [Occurrence]s.
+  ///
+  /// ```dart
+  /// getEventInfo(id: 'f90b893ea04939d7456f30c54f68d7b4', start: 2020, end: 2030)
+  /// ```
   Future<GetEventInfoResponse> getEventInfo(
       {required String id, int? start, int? end}) async {
     if (id.isEmpty) {
@@ -58,7 +73,14 @@ class HolidayEventApi {
     return _request('event', params, GetEventInfoResponse.fromJson);
   }
 
-  /// Searches for Events with the given criteria
+  /// Searches for Events with the given criteria.
+  ///
+  /// The search [query] is required, and you can specify [adult] to
+  /// determine if the results include NSFW Events.
+  ///
+  /// ```dart
+  /// search(query: 'taco', adult: false)
+  /// ```
   Future<SearchResponse> search(
       {required String query, bool adult = false}) async {
     if (query.isEmpty) {
