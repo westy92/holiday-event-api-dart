@@ -6,7 +6,11 @@ import 'package:holiday_event_api/src/model/get_events_response.dart';
 import 'package:holiday_event_api/src/model/search_response.dart';
 import 'package:http/http.dart';
 
+/// The Official Holiday and Event API for Dart and Flutter.
 class HolidayEventApi {
+  /// Creates a [HolidayEventApi] using the provided [apiKey].
+  /// 
+  /// Get one at https://apilayer.com/marketplace/checkiday-api#pricing.
   HolidayEventApi(String apiKey) {
     if (apiKey.isEmpty) {
       throw ArgumentError(
