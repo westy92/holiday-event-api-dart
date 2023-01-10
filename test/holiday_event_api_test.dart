@@ -16,8 +16,10 @@ import 'package:holiday_event_api/src/model/rich_text.dart';
 import 'package:holiday_event_api/src/model/search_response.dart';
 import 'package:http/http.dart';
 import 'package:http/testing.dart';
+import 'package:pubspec_parse/pubspec_parse.dart';
 import 'package:test/test.dart';
 
+final pubspec = File('pubspec.yaml').readAsStringSync();
 final getEventsDefault =
     File('test/responses/getEvents-default.json').readAsStringSync();
 final getEventsParameters =
@@ -63,9 +65,10 @@ void main() {
     });
 
     test('passes along user-agent', () {
+      final version = Pubspec.parse(pubspec).version?.toString();
       final client = MockClient((request) async {
-        expect(request.headers['user-agent'],
-            equals('HolidayApiDart/1.0.0')); // TODO
+        expect(
+            request.headers['user-agent'], equals('HolidayApiDart/$version'));
         return Response(getEventsDefault, 200);
       });
       return runWithClient(() async {

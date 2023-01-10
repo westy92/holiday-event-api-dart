@@ -17,7 +17,8 @@ class HolidayEventApi {
 
   late final String _apiKey;
 
-  static const JsonDecoder decoder = JsonDecoder();
+  static const String version = '0.0.1';
+  static const JsonDecoder _decoder = JsonDecoder();
   static const int _maxRedirects = 5;
 
   /// Gets the Events for the provided Date
@@ -78,7 +79,7 @@ class HolidayEventApi {
     try {
       final headers = {
         'apikey': _apiKey,
-        'user-agent': 'HolidayApiDart/1.0.0', // TODO
+        'user-agent': 'HolidayApiDart/$version',
         'x-platform-version': Platform.version,
       };
       response = await get(
@@ -96,7 +97,7 @@ class HolidayEventApi {
             headers: headers);
       }
 
-      result = decoder.convert(response.body);
+      result = _decoder.convert(response.body);
 
       result!['rateLimit'] = {
         'limitMonth':
@@ -110,7 +111,6 @@ class HolidayEventApi {
       if (response?.statusCode == HttpStatus.ok) {
         throw FormatException('Unable to parse response.');
       }
-      // TODO exception type
       throw ClientException(result?['error'] ??
           response?.reasonPhrase ??
           response?.statusCode.toString());
