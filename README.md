@@ -1,6 +1,7 @@
 # The Official Holiday and Event API for Dart and Flutter
 
-<!-- pub.dev version -->
+[![pub points](https://img.shields.io/pub/points/holiday_event_api?color=2E8B57&label=pub%20points)](https://pub.dev/packages/holiday_event_api/score)
+[![pub package](https://img.shields.io/pub/v/holiday_event_api.svg)](https://pub.dev/packages/holiday_event_api)
 [![Build Status](https://github.com/westy92/holiday-event-api-dart/actions/workflows/ci.yml/badge.svg)](https://github.com/westy92/holiday-event-api-dart/actions)
 [![Code Coverage](https://codecov.io/gh/westy92/holiday-event-api-dart/branch/main/graph/badge.svg)](https://codecov.io/gh/westy92/holiday-event-api-dart)
 [![Funding Status](https://img.shields.io/github/sponsors/westy92)](https://github.com/sponsors/westy92)
