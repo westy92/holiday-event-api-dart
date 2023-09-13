@@ -4,7 +4,7 @@ import 'package:holiday_event_api/src/model/rate_limit.dart';
 import 'package:holiday_event_api/src/model/standard_response.dart';
 import 'package:json_annotation/json_annotation.dart';
 
-// Generated with: flutter packages pub run build_runner build
+// Generated with: dart run build_runner build
 // Each class needs:
 //   factory <CLASSNAME>.fromJson(Map<String, dynamic> json) => _$<CLASSNAME>FromJson(json);
 part 'search_response.g.dart';

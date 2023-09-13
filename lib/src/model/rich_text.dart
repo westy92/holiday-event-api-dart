@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
 
-// Generated with: flutter packages pub run build_runner build
+// Generated with: dart run build_runner build
 // Each class needs:
 //   factory <CLASSNAME>.fromJson(Map<String, dynamic> json) => _$<CLASSNAME>FromJson(json);
 part 'rich_text.g.dart';

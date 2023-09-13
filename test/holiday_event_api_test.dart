@@ -2,18 +2,6 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:holiday_event_api/holiday_event_api.dart';
-import 'package:holiday_event_api/src/model/alternate_name.dart';
-import 'package:holiday_event_api/src/model/event_info.dart';
-import 'package:holiday_event_api/src/model/event_summary.dart';
-import 'package:holiday_event_api/src/model/founder_info.dart';
-import 'package:holiday_event_api/src/model/get_event_info_response.dart';
-import 'package:holiday_event_api/src/model/get_events_response.dart';
-import 'package:holiday_event_api/src/model/image_info.dart';
-import 'package:holiday_event_api/src/model/occurrence.dart';
-import 'package:holiday_event_api/src/model/pattern.dart';
-import 'package:holiday_event_api/src/model/rate_limit.dart';
-import 'package:holiday_event_api/src/model/rich_text.dart';
-import 'package:holiday_event_api/src/model/search_response.dart';
 import 'package:http/http.dart';
 import 'package:http/testing.dart';
 import 'package:pubspec_parse/pubspec_parse.dart';

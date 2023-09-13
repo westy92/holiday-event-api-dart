@@ -7,7 +7,7 @@ import 'package:holiday_event_api/src/model/pattern.dart';
 import 'package:holiday_event_api/src/model/rich_text.dart';
 import 'package:json_annotation/json_annotation.dart';
 
-// Generated with: flutter packages pub run build_runner build
+// Generated with: dart run build_runner build
 // Each class needs:
 //   factory <CLASSNAME>.fromJson(Map<String, dynamic> json) => _$<CLASSNAME>FromJson(json);
 part 'event_info.g.dart';

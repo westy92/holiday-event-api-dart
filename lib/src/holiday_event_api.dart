@@ -21,7 +21,7 @@ class HolidayEventApi {
 
   late final String _apiKey;
 
-  static const String version = '1.0.1';
+  static const String version = '1.0.2';
   static const JsonDecoder _decoder = JsonDecoder();
   static const int _maxRedirects = 5;
 

@@ -1,13 +1,13 @@
 name: holiday_event_api
 description: The Official Holiday and Event API built for Dart and Flutter.
-version: 1.0.1
+version: 1.0.2
 repository: https://github.com/westy92/holiday-event-api-dart
 issue_tracker: https://github.com/westy92/holiday-event-api-dart/issues
 funding:
   - https://github.com/sponsors/westy92
 
 environment:
-  sdk: '>=2.15.0 <3.0.0'
+  sdk: '>=2.15.0 <4.0.0'
 
 platforms:
   android:
@@ -19,12 +19,19 @@ platforms:
 
 dependencies:
   equatable: ^2.0.0
-  http: ^0.13.5
-  json_annotation: ^4.7.0
+  http: ^1.0.0
+  json_annotation: ^4.8.1
 
 dev_dependencies:
   build_runner: ^2.1.0
-  json_serializable: ^6.5.1
+  json_serializable: ^6.7.1
   lints: ^2.0.0
   pubspec_parse: ^1.2.1
   test: ^1.16.0
+
+topics:
+  - api
+  - apis
+  - client
+  - event
+  - http
